@@ -108,10 +108,10 @@ public:
     _end_value( end_value )
   {
     std::vector<EaseFn> list = { std::forward<Args>( args )... };
-    for( size_t i = 0; i < SIZE && i < list.size(); ++i ) {
+    for( unsigned int i = 0; i < SIZE && i < list.size(); ++i ) {
       _ease_fns[i] = list[i];
     }
-    for( size_t i = list.size(); i < SIZE; ++i ) {
+    for( unsigned int i = list.size(); i < SIZE; ++i ) {
       _ease_fns[i] = list.back();
     }
   }
@@ -121,7 +121,7 @@ public:
   {
     Time t = this->normalizeTime( at_time );
     T out;
-    for( int i = 0; i < SIZE; ++i )
+    for ( unsigned int i = 0; i < SIZE; ++i )
     {
       out[i] = _componentLerpFn( _start_value[i], _end_value[i], _ease_fns[i]( t ) );
     }
